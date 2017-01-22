@@ -1,0 +1,94 @@
+<md-dialog aria-label="Change Current Price" style="min-width: 60%;">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        Add New Transaction
+        
+        <md-progress-circular md-mode="indeterminate" md-diameter="20px" class="md-accent" style="margin-left: 10px;" ng-hide="!progress"></md-progress-circular>
+        
+        <span flex></span>
+        
+        <md-button class="md-icon-button" aria-label="Close" ng-click="closeDialog()">
+          <md-icon class="mdi mdi-close mdi-fix mdi-25px-fix white"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+    <style>
+    md-input-container {
+        margin: 0 0 18px 0 !important;
+    }
+    </style>
+        
+    <md-dialog-content style="overflow-x: hidden;">
+        <md-content layout-xs="column" layout="row" style="padding: 18px 15px 0 15px;">
+                <div class="whiteContainer-content" style="width: 100%; padding: 0;">
+                    <form name="transactionForm">
+                      <md-content layout-padding style="padding: 5px 0px;">
+                        <div>
+                            <div layout-gt-xs="row">
+                              <md-input-container class="md-block" flex-gt-xs>
+                                <label>What?</label>
+                                <input required ng-model="item.what">
+                                
+                                <div ng-messages="item.what.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                              </md-input-container>
+
+                              <md-input-container>
+                                <label>When?</label>
+                                <md-datepicker required ng-model="item.when"></md-datepicker>
+                                
+                                <div ng-messages="item.when.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                              </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row" style="padding: 0; margin: 0;">
+                              <md-input-container class="md-block" flex-gt-sm>
+                                <label>Cost (CAD)</label>
+                                <input required ng-model="item.cost" type="number" step="any">
+                                
+                                <div ng-messages="item.cost.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                              </md-input-container>
+
+                              <md-input-container class="md-block" flex-gt-sm>
+                                <label>Category</label>
+                                <input required ng-model="item.category">
+                                
+                                <div ng-messages="item.category.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                              </md-input-container>
+                            </div>
+                            
+                            <div layout-gt-sm="row" style="padding: 0; margin: 0;">
+                              <md-input-container flex="50">
+                                  <label>Good/Bad?</label>
+                                  <md-select name="type" ng-model="item.type" required>
+                                    <md-option value="good">Good</md-option>
+                                    <md-option value="bad">Bad</md-option>
+                                  </md-select>
+                              </md-input-container>
+                              
+                              <div flex="50" style="text-align: right;">
+                                  <img ng-src="{{item.img}}" width="100" height="80" style="margin-top: -15px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.07);" />
+                              </div>
+                            </div>
+                        </div>
+                      </md-content>
+                      
+                      <section layout="row" layout-sm="column" layout-align="left left" style="margin-top: -15px; margin-bottom: 30px;" ng-hide="numOfKeys() == 0" layout-wrap>
+                        <md-button type="submit" ng-disabled="transactionForm.$invalid" ng-click="submit()" class="md-raised md-primary" style="display: table; padding: 2px 15px;">
+                            <md-icon class="mdi mdi-send mdi-fix mdi-25px-fix mdi-space white" style="vertical-align: bottom;"></md-icon>
+                            Submit
+                        </md-button>
+                      </section>
+                    </form>
+                </div>
+        </md-content>
+    </md-dialog-content>
+</md-dialog>

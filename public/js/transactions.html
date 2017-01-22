@@ -1,0 +1,55 @@
+<md-card style="margin-bottom: 30px;">
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">          
+        <h2>
+          <span>{{numOfKeys()}} Items</span>
+        </h2>
+        
+        <span flex></span>
+        
+        <md-button class="md-raised md-accent" aria-label="Add Item" style="padding: 2px 15px;" ng-click="addTransaction()">
+          <md-icon class="mdi mdi-plus-circle mdi-fix mdi-25px-fix" style="margin-right: 5px; vertical-align: bottom;"></md-icon>
+          Add Transaction
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+    <md-list ng-hide="numOfKeys() == 0">
+        <md-list-item ng-repeat="(key, order) in transactions track by $index" class="noright" ng-click="changeCurrentPrice(order)">
+            <img alt="{{order.symbol}}" ng-src="{{order.img}}" class="md-avatar stock-icon" />
+            
+            <p>{{order.what}}</p>
+            
+            <b class="md-secondary">{{order.cost | currency}}</b>
+            
+            <md-button ng-click="remove(key)" class="md-icon-button md-secondary">
+                <md-tooltip>Remove</md-tooltip>
+                <md-icon class="mdi mdi-close mdi-fix mdi-25px-fix"></md-icon>
+            </md-button>
+        </md-list-item>
+    </md-list>
+    
+<!--
+    <section layout="row" layout-sm="column" layout-align="center center" style="margin-top: 15px; margin-bottom: 30px;" ng-hide="numOfKeys() == 0" layout-wrap>
+        <md-button ng-click="startUpdating()" class="md-raised md-primary" style="display: table; width: 250px;" ng-disabled="simulation">
+            <md-icon class="mdi mdi-fix mdi-auto-fix white"></md-icon>
+            Simulate the Market
+        </md-button>
+        
+        <md-button ng-click="stopUpdating()" class="md-raised md-warn" style="display: table; width: 250px;" ng-disabled="!simulation">
+            <md-icon class="mdi mdi-fix mdi-close white"></md-icon>
+            Stop Simulation
+        </md-button>
+    </section>
+-->
+    
+    <md-progress-circular md-mode="indeterminate" md-diameter="100px" class="md-primary" style="margin: 30px auto;" ng-hide="loaded">
+    </md-progress-circular>
+    
+<!--
+    <md-button ng-click="populate()" class="md-raised md-primary" style="display: table; width: 250px; margin: 30px auto;" ng-hide="numOfKeys() > 0">
+        <md-icon class="mdi mdi-fix mdi-auto-fix white"></md-icon>
+        Add Items
+    </md-button>
+-->
+</md-card>

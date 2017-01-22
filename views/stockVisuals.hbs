@@ -1,0 +1,154 @@
+<html>
+<head>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" />-->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+</head>
+<body>
+    <div class="l-chart">
+      <div class="aspect-ratio">
+        <canvas id="chart"></canvas>
+      </div>
+    </div>
+    
+<script>
+    var data = JSON.parse(`{{{stockData}}}`);
+    var symbol = "{{{symbol}}}".toUpperCase();
+    
+    var xAxis = [];
+    var chartData = [];
+    
+    var counter = 0;
+    data.map(function(item) {
+        xAxis.push(" ");
+        chartData.push(parseFloat(item.Close));
+    });
+        
+    var dataColumns = [
+                xAxis,
+                chartData
+            ];
+    
+    var highestValue = Math.max.apply(null, chartData);
+    
+    Chart.defaults.global.animationEasing = 'easeInOutQuad', Chart.defaults.global.responsive = true;
+    Chart.defaults.global.showScale = false;
+    Chart.defaults.global.scaleOverride = true;
+    Chart.defaults.global.scaleShowLabels = false;
+    Chart.defaults.global.scaleSteps = 10;
+    Chart.defaults.global.scaleStepWidth = highestValue / 10;
+    Chart.defaults.global.showTooltips = false;
+    Chart.defaults.global.maintainAspectRatio = true;
+    Chart.defaults.Line.scaleShowHorizontalLines = false;
+    Chart.defaults.Line.scaleShowHorizontalLines = false;
+    Chart.defaults.Line.scaleShowVerticalLines = false;
+    Chart.defaults.Line.scaleGridLineColor = '#55505C';
+    Chart.defaults.Line.scaleLineColor = '#55505C';
+    var chart = document.getElementById('chart').getContext('2d'), gradient = chart.createLinearGradient(0, 0, 0, 450);
+    var data = {
+        labels: xAxis,
+        datasets: [{
+                label: 'Custom Label Name',
+                fillColor: gradient,
+                strokeColor: '#FC2525',
+                pointColor: 'rgba(220,220,220,0)',
+                pointStrokeColor: 'rgba(220,220,220,0)',
+                pointHighlightFill: 'rgba(220,220,220,0)',
+                pointHighlightStroke: 'rgba(220,220,220,0)',
+                data: chartData,
+                scaleShowLabels : false,
+                pointRadius: 0
+            }]
+    };
+    gradient.addColorStop(0, 'rgba(255, 0,0, 0.5)');
+    gradient.addColorStop(0.5, 'rgba(255, 0, 0, 0.25)');
+    gradient.addColorStop(1, 'rgba(255, 0, 0, 0)');
+    
+    var chart = new Chart(chart).Line(data);
+      //# sourceURL=pen.js
+</script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.7/d3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.9/c3.min.js" charset="utf-8"></script>
+<script>
+    var data = JSON.parse(`{{{stockData}}}`);
+    var symbol = "{{{symbol}}}".toUpperCase();
+    
+    var xAxis = ['x'];
+    var chartData = [symbol];
+    
+    data.map(function(item) {
+        xAxis.push(item.Date);
+        chartData.push(parseFloat(item.Close))
+    });
+        
+    var dataColumns = [
+                xAxis,
+                chartData
+            ];
+    
+//    var chart = c3.generate({
+//        bindto: '#chart',
+//        data: {
+//            x: 'x',
+//            columns: dataColumns
+//        },
+//        axis: {
+//            x: {
+//                show: false,
+//                type: 'timeseries',
+//                tick: {
+//                    format: '%Y-%m-%d'
+//                }
+//            },
+//            y: {
+//                show: false
+//            }
+//        },
+//        point: {
+//            show: false
+//        },
+//        legend: {
+//            show: false
+//        }
+//    });
+    
+    var grad1 = 
+    '<linearGradient id="grad1" x1="50%" y1="0%" x2="50%" y2="100%">'+
+    '  <stop offset="0%" style="stop-color:rgb(196,229,255);stop-opacity:1" />'+
+    '  <stop offset="23%" style="stop-color:rgb(196,229,255);stop-opacity:1" />'+
+    '  <stop offset="100%" style="stop-color:rgb(10,149,255);stop-opacity:1" />'+
+    '</linearGradient>';
+
+    var grad2 = 
+    '<linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%" >'+
+    '  <stop offset="0%" style="stop-color:rgb(77,0,0);stop-opacity:1" />'+
+    '  <stop offset="50%" style="stop-color:rgb(255,0,0);stop-opacity:1" />'+
+    '  <stop offset="100%" style="stop-color:rgb(77,0,0);stop-opacity:0" />'+
+    '</linearGradient>'
+
+
+    var chart = c3.generate({
+        data: {
+            columns: [
+                chartData,
+                ['data1', 100, 200, 150, 300, 200]
+            ],
+            types: {
+                "appl": 'area-spline',
+                data2: 'area-spline'
+            },
+            colors: {
+                "appl": 'url(#grad1)',
+                data2: 'url(#grad2)'
+            }
+        },
+        color: {
+             // pattern: ['url(#grad1)', '#ffff00']
+        },
+        oninit: function() {
+            this.svg[0][0].getElementsByTagName('defs')[0].innerHTML += grad1 + grad2;
+        }
+
+    });
+</script>-->
+</body>
+</html>

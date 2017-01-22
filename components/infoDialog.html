@@ -1,0 +1,33 @@
+<md-dialog aria-label="" style="width: 500px !important;">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>
+            {{name}}
+        </h2>
+        
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="closeDialog()">
+          <md-icon class="mdi mdi-close mdi-25px-close" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content" style="line-height: 23px;">
+        {{item.desc}}
+        
+        <div class="row" style="padding-top: 30px;">
+          <div class="col-6-med">
+            <h3>Healthy Range</h3>
+            {{db[0][name].low}} - {{db[0][name].high}} {{db[0][name].unit}}
+          </div>
+          
+          <div class="col-6-med">
+            <h3>Your Level</h3>
+            {{variables[name]}} {{db[0][name].unit}}
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
