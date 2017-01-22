@@ -1,9 +1,9 @@
-# transaction.ai
+# SmartSpend
 <img src="previews/logo.gif" width="200" loop="infinite" />
 <p>You wanna spend $6000/year on Cigarettes?<br />Cool, but here's how much you could've made with that in Stocks! :dollar:</p>
 
 <h3>
-  :globe_with_meridians: <a href="https://transaction-ai.herokuapp.com" target="_blank">Try Out the Server</a>
+  :globe_with_meridians: <a href="http://173.236.121.90" target="_blank">Try Out the Server</a>
 </h3>
 
 iOS App Screenshots
